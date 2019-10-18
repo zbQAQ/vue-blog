@@ -1,0 +1,40 @@
+<template>
+  <div class="admin-layout">
+    <sideBar class="sidebar-container"></sideBar>
+    <div class="main-container">
+      <el-header>Header</el-header>
+      <AppMain />
+    </div>
+  </div>
+</template>
+
+<script>
+import AppMain from "./components/AppMain.vue";
+import sideBar from "./components/sideBar.vue";
+export default {
+  name: "adminLayout",
+  components: { AppMain, sideBar }
+};
+</script>
+
+<style>
+.admin-layout {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.sidebar-container {
+  position: fixed;
+  height: 100%;
+  width: 200px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1001;
+}
+.main-container {
+  min-height: 100%;
+  margin-left: 200px;
+  position: relative;
+}
+</style>
