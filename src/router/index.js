@@ -17,8 +17,14 @@ const routes = [
         component: () => import("../views/admin/favorites/list.vue")
       },
       {
-        path: "favoritesEdit",
+        path: "favoritesEdit/:id",
         name: "favoritesEdit",
+        props: true,
+        component: () => import("../views/admin/favorites/edit.vue")
+      },
+      {
+        path: "favoritesCreate",
+        name: "favoritesCreate",
         component: () => import("../views/admin/favorites/edit.vue")
       }
     ]

@@ -6,7 +6,7 @@
           <span>收藏夹管理</span>
         </div>
         <el-menu-item index="/admin/favoritesList">列表</el-menu-item>
-        <el-menu-item index="/admin/favoritesEdit">编辑</el-menu-item>
+        <el-menu-item index="/admin/favoritesCreate">创建</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>

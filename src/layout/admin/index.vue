@@ -2,7 +2,8 @@
   <div class="admin-layout">
     <sideBar class="sidebar-container"></sideBar>
     <div class="main-container">
-      <el-header>Header</el-header>
+      <!-- <el-header>Header</el-header> -->
+      <Header />
       <AppMain />
     </div>
   </div>
@@ -11,9 +12,10 @@
 <script>
 import AppMain from "./components/AppMain.vue";
 import sideBar from "./components/sideBar.vue";
+import Header from "./components/header.vue";
 export default {
   name: "adminLayout",
-  components: { AppMain, sideBar }
+  components: { AppMain, sideBar, Header }
 };
 </script>
 
@@ -36,5 +38,10 @@ export default {
   min-height: 100%;
   margin-left: 200px;
   position: relative;
+}
+
+.pageTitle {
+  margin-bottom: 12px;
+  line-height: 26px;
 }
 </style>

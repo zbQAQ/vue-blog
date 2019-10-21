@@ -16,6 +16,9 @@ export default {
 };
 </script>
 <style scoped>
+.app-main {
+  padding: 15px;
+}
 .fade-transform-leave-active,
 .fade-transform-enter-active {
   transition: all 0.5s;
