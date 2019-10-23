@@ -35,6 +35,18 @@ export default {
       return null;
     }
   },
+  async deleteFile(fileName) {
+    try {
+      const res = await request.delete(url.dev + "upload/" + fileName);
+      console.log("deleteFile res:", res);
+      if (res.status === 200 && res.statusText === "OK") {
+        return res.data;
+      }
+      return null;
+    } catch {
+      return null;
+    }
+  },
 
   ...favoritesModel,
   ...articlesModel,

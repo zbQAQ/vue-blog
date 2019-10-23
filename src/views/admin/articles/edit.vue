@@ -25,11 +25,11 @@
         </el-select>
       </el-form-item>
       <el-form-item label="文章详情">
-        <VueEditor
-          style="background:#fff"
-          useCustomImageHandler
-          @image-added="handleImageAdded"
+        <mavonEditor
           v-model="model.description"
+          ref="articleEditor"
+          @imgAdd="handleImageAdded"
+          @imgDel="handleImageDelete"
         />
       </el-form-item>
       <el-form-item>
@@ -46,15 +46,15 @@
 
 <script>
 import posts from "@/api";
-import { VueEditor } from "vue2-editor";
-// import ImageResize from "quill-image-resize-module";
-// Quill.register("modules/imageResize", ImageResize);
+
+import { mavonEditor } from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
 
 export default {
   name: "edit",
   props: ["id"],
   components: {
-    VueEditor
+    mavonEditor
   },
   data() {
     return {
@@ -93,13 +93,17 @@ export default {
 
       this.loading = false;
     },
-    async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
+    async handleImageAdded(pos, $file) {
       let formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", $file);
 
       const result = await posts.uploadFile(formData);
-      Editor.insertEmbed(cursorLocation, "image", result.url);
-      resetUploader();
+      this.$refs.articleEditor.$img2Url(pos, result.url);
+    },
+    async handleImageDelete(file) {
+      const fileName = file[0].split("/").pop();
+      const res = await posts.deleteFile(fileName);
+      this.$message.success(res.message);
     }
   },
   created() {
