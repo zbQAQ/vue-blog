@@ -16,7 +16,27 @@
  * }
  *
  */
+import url from "./url";
+import request from "@/plugins/request";
 import favoritesModel from "./model/favorites";
+import articlesModel from "./model/articles";
+import categoriesModel from "./model/categories";
 export default {
-  ...favoritesModel
+  async uploadFile(formdata) {
+    try {
+      const res = await request.post(url.dev + "upload", formdata);
+      console.log("uploadfile res:", res);
+      // debugger;
+      if (res.status === 200 && res.statusText === "OK") {
+        return res.data.data;
+      }
+      return null;
+    } catch {
+      return null;
+    }
+  },
+
+  ...favoritesModel,
+  ...articlesModel,
+  ...categoriesModel
 };

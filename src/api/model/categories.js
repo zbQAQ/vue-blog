@@ -2,13 +2,13 @@ import request from "@/plugins/request";
 import url from "../url";
 
 export default {
-  async fetchFavoritesList() {
+  async fetchCategoriesList() {
     try {
       const res = await request({
-        url: url.dev + "favorites",
+        url: url.dev + "rest/categories",
         method: "get"
       });
-      console.log("fetchFavoritesList res:", res);
+      console.log("fetch categoriesList res:", res);
       // debugger;
       if (res.status === 200 && res.statusText === "OK") {
         return res.data.data;
@@ -18,13 +18,14 @@ export default {
       return null;
     }
   },
-  async fetchFavoritesDetail(id) {
+
+  async fetchCategoriesDetail(id) {
     try {
       const res = await request({
-        url: url.dev + "rest/favorites/" + id,
+        url: url.dev + "rest/categories/" + id,
         method: "get"
       });
-      console.log("fetchFavoritesDetail res:", res);
+      console.log("fetch categoriesDetail res:", res);
       // debugger;
       if (res.status === 200 && res.statusText === "OK") {
         return res.data.data;
@@ -34,14 +35,14 @@ export default {
       return null;
     }
   },
-  async updateFavoritesOne(id, data) {
+  async updateCategoriesOne(id, data) {
     try {
       const res = await request({
-        url: url.dev + "rest/favorites/" + id,
+        url: url.dev + "rest/categories/" + id,
         method: "put",
         data
       });
-      console.log("updateFavoritesOne res:", res);
+      console.log("update categoriesOne res:", res);
       // debugger;
       if (res.status === 200 && res.statusText === "OK") {
         return res.data;
@@ -51,14 +52,14 @@ export default {
       return null;
     }
   },
-  async createFavorites(data) {
+  async createCategories(data) {
     try {
       const res = await request({
-        url: url.dev + "rest/favorites/",
+        url: url.dev + "rest/categories/",
         method: "post",
         data
       });
-      console.log("createFavorites res:", res);
+      console.log("create categories res:", res);
       // debugger;
       if (res.status === 200 && res.statusText === "OK") {
         return res.data;
@@ -68,13 +69,13 @@ export default {
       return null;
     }
   },
-  async deleteFavorites(id) {
+  async deleteCategories(id) {
     try {
       const res = await request({
-        url: url.dev + "rest/favorites/" + id,
+        url: url.dev + "rest/categories/" + id,
         method: "delete"
       });
-      console.log("deleteFavorites res:", res);
+      console.log("delete categories res:", res);
       // debugger;
       if (res.status === 200 && res.statusText === "OK") {
         return res.data;

@@ -1,6 +1,6 @@
 <template>
-  <div class="favoritesEdit">
-    <h2 class="pageTitle">收藏夹{{ id ? "编辑" : "创建" }}</h2>
+  <div class="categoriesEdit">
+    <h2 class="pageTitle">文章分类{{ id ? "编辑" : "创建" }}</h2>
 
     <el-form
       ref="form"
@@ -10,28 +10,14 @@
       v-loading="loading"
       style="max-width: 800px"
     >
-      <el-form-item label="收藏类别">
-        <el-select v-model="model.category" placeholder="请选择">
-          <el-option
-            v-for="item in categories"
-            :key="item._id"
-            :label="item.name"
-            :value="item._id"
-          >
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="收藏名称">
+      <el-form-item label="名称">
         <el-input v-model="model.name"></el-input>
-      </el-form-item>
-      <el-form-item label="链接地址">
-        <el-input v-model="model.link"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">
           立即{{ id ? "修改" : "创建" }}
         </el-button>
-        <el-button @click="$router.push('/admin/favoritesList')">
+        <el-button @click="$router.push('/admin/categoriesList')">
           返回
         </el-button>
       </el-form-item>
@@ -47,8 +33,7 @@ export default {
   data() {
     return {
       loading: false,
-      model: {},
-      categories: []
+      model: {}
     };
   },
   methods: {
@@ -56,12 +41,12 @@ export default {
       this.loading = true;
       let res;
       if (this.id) {
-        res = await posts.updateFavoritesOne(this.id, this.model);
+        res = await posts.updateCategoriesOne(this.id, this.model);
       } else {
-        res = await posts.createFavorites(this.model);
+        res = await posts.createCategories(this.model);
       }
       if (res.code) {
-        this.$router.push("/admin/favoritesList");
+        this.$router.push("/admin/categoriesList");
         this.$message({
           message: res.message,
           type: "success"
@@ -71,20 +56,12 @@ export default {
     },
     async fetchDetail() {
       this.loading = true;
-      this.model = await posts.fetchFavoritesDetail(this.id);
-      this.loading = false;
-    },
-    async fetchCategories() {
-      this.loading = true;
-
-      this.categories = await posts.fetchCategoriesList();
-
+      this.model = await posts.fetchCategoriesDetail(this.id);
       this.loading = false;
     }
   },
   created() {
     this.id && this.fetchDetail();
-    this.fetchCategories();
   }
 };
 </script>

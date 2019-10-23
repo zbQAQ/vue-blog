@@ -2,13 +2,13 @@ import request from "@/plugins/request";
 import url from "../url";
 
 export default {
-  async fetchFavoritesList() {
+  async fetchArticlesList() {
     try {
       const res = await request({
-        url: url.dev + "favorites",
+        url: url.dev + "articles",
         method: "get"
       });
-      console.log("fetchFavoritesList res:", res);
+      console.log("fetch articlesList res:", res);
       // debugger;
       if (res.status === 200 && res.statusText === "OK") {
         return res.data.data;
@@ -18,13 +18,14 @@ export default {
       return null;
     }
   },
-  async fetchFavoritesDetail(id) {
+
+  async fetchArticlesDetail(id) {
     try {
       const res = await request({
-        url: url.dev + "rest/favorites/" + id,
+        url: url.dev + "rest/articles/" + id,
         method: "get"
       });
-      console.log("fetchFavoritesDetail res:", res);
+      console.log("fetch articlesDetail res:", res);
       // debugger;
       if (res.status === 200 && res.statusText === "OK") {
         return res.data.data;
@@ -34,14 +35,14 @@ export default {
       return null;
     }
   },
-  async updateFavoritesOne(id, data) {
+  async updateArticlesOne(id, data) {
     try {
       const res = await request({
-        url: url.dev + "rest/favorites/" + id,
+        url: url.dev + "rest/articles/" + id,
         method: "put",
         data
       });
-      console.log("updateFavoritesOne res:", res);
+      console.log("update articlesOne res:", res);
       // debugger;
       if (res.status === 200 && res.statusText === "OK") {
         return res.data;
@@ -51,14 +52,14 @@ export default {
       return null;
     }
   },
-  async createFavorites(data) {
+  async createArticles(data) {
     try {
       const res = await request({
-        url: url.dev + "rest/favorites/",
+        url: url.dev + "rest/articles/",
         method: "post",
         data
       });
-      console.log("createFavorites res:", res);
+      console.log("create articles res:", res);
       // debugger;
       if (res.status === 200 && res.statusText === "OK") {
         return res.data;
@@ -68,13 +69,13 @@ export default {
       return null;
     }
   },
-  async deleteFavorites(id) {
+  async deleteArticles(id) {
     try {
       const res = await request({
-        url: url.dev + "rest/favorites/" + id,
+        url: url.dev + "rest/articles/" + id,
         method: "delete"
       });
-      console.log("deleteFavorites res:", res);
+      console.log("delete articles res:", res);
       // debugger;
       if (res.status === 200 && res.statusText === "OK") {
         return res.data;

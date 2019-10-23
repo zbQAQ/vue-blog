@@ -17,7 +17,7 @@ export default {
 </script>
 <style scoped>
 .app-main {
-  padding: 15px;
+  padding: 35px 15px;
 }
 .fade-transform-leave-active,
 .fade-transform-enter-active {
