@@ -4,8 +4,13 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import adminLayout from "@/layout/admin";
+import login from "@/views/admin/login/login.vue";
 
 const routes = [
+  {
+    path: "/login",
+    component: login
+  },
   {
     path: "/admin",
     redirect: "/admin/categoriesList",
