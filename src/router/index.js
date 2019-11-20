@@ -65,6 +65,23 @@ const routes = [
         path: "categoriesCreate",
         name: "categoriesCreate",
         component: () => import("../views/admin/categories/edit.vue")
+      },
+
+      {
+        path: "userList",
+        name: "userList",
+        component: () => import("../views/admin/users/list.vue")
+      },
+      {
+        path: "userEdit/:id",
+        name: "userEdit",
+        props: true,
+        component: () => import("../views/admin/users/edit.vue")
+      },
+      {
+        path: "userCreate",
+        name: "userCreate",
+        component: () => import("../views/admin/users/edit.vue")
       }
     ]
   }

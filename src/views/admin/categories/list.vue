@@ -46,7 +46,7 @@ export default {
       }).then(async () => {
         this.loading = true;
         const res = await posts.deleteCategories(row._id);
-        if (res.code) {
+        if (res) {
           this.$message({
             message: res.message,
             type: "success"

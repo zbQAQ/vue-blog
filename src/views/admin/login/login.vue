@@ -1,6 +1,6 @@
 <template>
   <div class="loginCantainer">
-    <div class="box">
+    <div class="box" v-loading="loading">
       <div class="titleBox">
         登录
       </div>
@@ -18,6 +18,11 @@
               placeholder="请输入密码"
             ></el-input>
           </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="login">
+              登 录
+            </el-button>
+          </el-form-item>
         </el-form>
       </div>
     </div>
@@ -25,15 +30,29 @@
 </template>
 
 <script>
+import posts from "@/api";
+import localStorage from "@/plugins/localStorage";
 export default {
   name: "login",
   data() {
     return {
       model: {
-        account: "",
-        password: ""
-      }
+        account: "root",
+        password: "root"
+      },
+      loading: false
     };
+  },
+  methods: {
+    async login() {
+      this.loading = true;
+      const res = await posts.signIn(this.model);
+      this.loading = false;
+      if (res) {
+        localStorage.set("token", res.token);
+        this.$router.push("/admin");
+      }
+    }
   }
 };
 </script>

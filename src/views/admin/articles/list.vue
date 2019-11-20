@@ -46,8 +46,8 @@ export default {
         type: "warning"
       }).then(async () => {
         this.loading = true;
-        const res = await posts.deleteArticles(row.id);
-        if (res.code) {
+        const res = await posts.deleteArticles(row._id);
+        if (res) {
           this.$message({
             message: res.message,
             type: "success"

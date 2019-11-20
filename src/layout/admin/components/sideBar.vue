@@ -3,7 +3,7 @@
     <el-menu
       router
       :default-active="$route.path"
-      :default-openeds="['1', '2', '3']"
+      :default-openeds="['1', '2', '3', '4']"
     >
       <el-submenu index="1">
         <div slot="title">
@@ -27,6 +27,14 @@
         </div>
         <el-menu-item index="/admin/favoritesList">列表</el-menu-item>
         <el-menu-item index="/admin/favoritesCreate">创建</el-menu-item>
+      </el-submenu>
+
+      <el-submenu index="4">
+        <div slot="title">
+          <span>用户管理</span>
+        </div>
+        <el-menu-item index="/admin/userList">列表</el-menu-item>
+        <el-menu-item index="/admin/userCreate">创建</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>

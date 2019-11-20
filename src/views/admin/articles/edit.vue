@@ -72,7 +72,7 @@ export default {
       } else {
         res = await posts.createArticles(this.model);
       }
-      if (res.code) {
+      if (res) {
         this.$router.push("/admin/articlesList");
         this.$message({
           message: res.message,
@@ -107,8 +107,10 @@ export default {
     }
   },
   created() {
+    this.loading = true;
     this.id && this.fetchDetail();
     this.fetchCategories();
+    this.loading = false;
   }
 };
 </script>

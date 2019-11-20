@@ -16,17 +16,16 @@
  * }
  *
  */
-import url from "./url";
+import { url } from "./url";
 import request from "@/plugins/request";
 import favoritesModel from "./model/favorites";
 import articlesModel from "./model/articles";
 import categoriesModel from "./model/categories";
+import userModel from "./model/user";
 export default {
   async uploadFile(formdata) {
     try {
-      const res = await request.post(url.dev + "upload", formdata);
-      console.log("uploadfile res:", res);
-      // debugger;
+      const res = await request.post(url + "upload", formdata);
       if (res.status === 200 && res.statusText === "OK") {
         return res.data.data;
       }
@@ -37,8 +36,7 @@ export default {
   },
   async deleteFile(fileName) {
     try {
-      const res = await request.delete(url.dev + "upload/" + fileName);
-      console.log("deleteFile res:", res);
+      const res = await request.delete(url + "upload/" + fileName);
       if (res.status === 200 && res.statusText === "OK") {
         return res.data;
       }
@@ -50,5 +48,6 @@ export default {
 
   ...favoritesModel,
   ...articlesModel,
-  ...categoriesModel
+  ...categoriesModel,
+  ...userModel
 };

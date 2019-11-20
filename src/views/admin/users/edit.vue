@@ -1,6 +1,6 @@
 <template>
-  <div class="categoriesEdit">
-    <h2 class="pageTitle">文章分类{{ id ? "编辑" : "创建" }}</h2>
+  <div class="favoritesEdit">
+    <h2 class="pageTitle">用户{{ id ? "编辑" : "创建" }}</h2>
 
     <el-form
       ref="form"
@@ -9,16 +9,18 @@
       label-width="80px"
       v-loading="loading"
       style="max-width: 800px"
-      @submit.native.prevent="onSubmit"
     >
-      <el-form-item label="名称">
-        <el-input v-model="model.name"></el-input>
+      <el-form-item label="账号">
+        <el-input v-model="model.account"></el-input>
+      </el-form-item>
+      <el-form-item label="密码">
+        <el-input v-model="model.password"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">
           立即{{ id ? "修改" : "创建" }}
         </el-button>
-        <el-button @click="$router.push('/admin/categoriesList')">
+        <el-button @click="$router.push('/admin/userList')">
           返回
         </el-button>
       </el-form-item>
@@ -42,12 +44,12 @@ export default {
       this.loading = true;
       let res;
       if (this.id) {
-        res = await posts.updateCategoriesOne(this.id, this.model);
+        res = await posts.updateUserOne(this.id, this.model);
       } else {
-        res = await posts.createCategories(this.model);
+        res = await posts.createUser(this.model);
       }
-      if ("message" in res) {
-        this.$router.push("/admin/categoriesList");
+      if (res) {
+        this.$router.push("/admin/userList");
         this.$message({
           message: res.message,
           type: "success"
@@ -57,7 +59,7 @@ export default {
     },
     async fetchDetail() {
       this.loading = true;
-      this.model = await posts.fetchCategoriesDetail(this.id);
+      this.model = await posts.fetchUserDetail(this.id);
       this.loading = false;
     }
   },

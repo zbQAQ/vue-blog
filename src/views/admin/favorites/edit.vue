@@ -60,7 +60,7 @@ export default {
       } else {
         res = await posts.createFavorites(this.model);
       }
-      if (res.code) {
+      if (res) {
         this.$router.push("/admin/favoritesList");
         this.$message({
           message: res.message,

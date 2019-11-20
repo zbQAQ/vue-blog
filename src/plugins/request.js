@@ -1,5 +1,7 @@
 import axios from "axios";
 import { Message } from "element-ui";
+import localStorage from "../plugins/localStorage";
+import router from "../router/index";
 
 // create an axios instance
 const service = axios.create({
@@ -11,6 +13,9 @@ service.interceptors.request.use(
   config => {
     // do something before request is sent
     // like set token
+    if (localStorage.get("token")) {
+      config.headers.token = localStorage.get("token");
+    }
     return config;
   },
   error => {
@@ -23,24 +28,19 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
   response => {
-    const res = response.data;
-    if (res.code !== 1) {
-      Message({
-        message: res.message || "Error",
-        type: "error",
-        duration: 5 * 1000
-      });
-    }
+    console.log(response.config.url, response.data);
     return response;
   },
-  error => {
-    console.log("err" + error); // for debug
+  err => {
+    console.log("response err", err.response); // for debug
     Message({
-      message: error.message,
       type: "error",
-      duration: 5 * 1000
+      message: err.response.data.message
     });
-    return Promise.reject(error);
+    if (err.response.status === 401) {
+      router.push("/login");
+    }
+    return Promise.reject(err);
   }
 );
 
