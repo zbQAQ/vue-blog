@@ -1,6 +1,6 @@
 <template>
-  <div class="favoritesEdit">
-    <h2 class="pageTitle">收藏夹{{ id ? "编辑" : "创建" }}</h2>
+  <div class="bannerEdit">
+    <h2 class="pageTitle">banner{{ id ? "编辑" : "创建" }}</h2>
 
     <el-form
       ref="form"
@@ -10,24 +10,10 @@
       v-loading="loading"
       style="max-width: 800px"
     >
-      <el-form-item label="收藏类别">
-        <el-select v-model="model.category" placeholder="请选择">
-          <el-option
-            v-for="item in categories"
-            :key="item._id"
-            :label="item.name"
-            :value="item._id"
-          >
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="收藏名称">
+      <el-form-item label="名称">
         <el-input v-model="model.name"></el-input>
       </el-form-item>
-      <el-form-item label="链接地址">
-        <el-input v-model="model.link"></el-input>
-      </el-form-item>
-      <el-form-item label="缩略图">
+      <el-form-item :label="'上传图片'">
         <el-upload
           list-type="picture-card"
           :action="uploadUrl"
@@ -46,7 +32,7 @@
         <el-button type="primary" @click="onSubmit">
           立即{{ id ? "修改" : "创建" }}
         </el-button>
-        <el-button @click="$router.push('/admin/favoritesList')">
+        <el-button @click="$router.push('/admin/bannerList')">
           返回
         </el-button>
       </el-form-item>
@@ -63,11 +49,8 @@ export default {
   data() {
     return {
       loading: false,
-      model: {
-        thumb: ""
-      },
-      categories: [],
-      files: {}
+      files: {},
+      model: {}
     };
   },
   computed: {
@@ -86,17 +69,17 @@ export default {
         thumb = await posts.uploadFile(formData);
       }
       if (this.id) {
-        res = await posts.updateFavoritesOne(
+        res = await posts.updateBannerOne(
           this.id,
-          Object.assign({}, this.model, { thumb: thumb.url || "" })
+          Object.assign({}, this.model, { image: thumb.url || "" })
         );
       } else {
-        res = await posts.createFavorites(
-          Object.assign({}, this.model, { thumb: thumb.url || "" })
+        res = await posts.createBanner(
+          Object.assign({}, this.model, { image: thumb.url || "" })
         );
       }
       if (res) {
-        this.$router.push("/admin/favoritesList");
+        this.$router.push("/admin/bannerList");
         this.$message({
           message: res.message,
           type: "success"
@@ -105,10 +88,9 @@ export default {
       this.loading = false;
     },
     async fetchDetail() {
-      this.model = await posts.fetchFavoritesDetail(this.id);
-    },
-    async fetchCategories() {
-      this.categories = await posts.fetchCategoriesList();
+      this.loading = true;
+      this.model = await posts.fetchBannerDetail(this.id);
+      this.loading = false;
     },
     uploadExceed() {
       this.$message("最多只能上传一个图片");
@@ -125,10 +107,7 @@ export default {
     }
   },
   created() {
-    this.loading = true;
     this.id && this.fetchDetail();
-    this.fetchCategories();
-    this.loading = false;
   }
 };
 </script>
@@ -136,17 +115,5 @@ export default {
 <style scoped>
 .form {
   padding: 20px 0;
-}
-.avatarPlaceholder {
-  width: 8rem;
-  height: 8rem;
-  line-height: 8rem;
-  border: 1px dashed #b3b3b3;
-  border-radius: 4px;
-}
-.avatar {
-  max-width: 400px;
-  border: 1px dashed #b3b3b3;
-  border-radius: 4px;
 }
 </style>

@@ -82,6 +82,40 @@ const routes = [
         path: "userCreate",
         name: "userCreate",
         component: () => import("../views/admin/users/edit.vue")
+      },
+
+      {
+        path: "customNavList",
+        name: "customNavList",
+        component: () => import("../views/admin/customNav/list.vue")
+      },
+      {
+        path: "customNavEdit/:id",
+        name: "customNavEdit",
+        props: true,
+        component: () => import("../views/admin/customNav/edit.vue")
+      },
+      {
+        path: "customNavCreate",
+        name: "customNavCreate",
+        component: () => import("../views/admin/customNav/edit.vue")
+      },
+
+      {
+        path: "bannerList",
+        name: "bannerList",
+        component: () => import("../views/admin/bannerAdm/list.vue")
+      },
+      {
+        path: "bannerEdit/:id",
+        name: "bannerEdit",
+        props: true,
+        component: () => import("../views/admin/bannerAdm/edit.vue")
+      },
+      {
+        path: "bannerCreate",
+        name: "bannerCreate",
+        component: () => import("../views/admin/bannerAdm/edit.vue")
       }
     ]
   }

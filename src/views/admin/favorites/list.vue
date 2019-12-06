@@ -5,6 +5,16 @@
       <el-table-column prop="_id" label="id" width="220"></el-table-column>
       <el-table-column prop="name" label="名称"></el-table-column>
       <el-table-column prop="category.name" label="类别"></el-table-column>
+      <el-table-column prop="thumb" width="220" label="缩略图">
+        <template slot-scope="scope">
+          <p v-if="scope.row.thumb">
+            <img class="tableImg" :src="url + scope.row.thumb" alt="" />
+          </p>
+          <p v-else>
+            暂无
+          </p>
+        </template>
+      </el-table-column>
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
           <el-button
@@ -25,10 +35,12 @@
 
 <script>
 import posts from "@/api";
+import { url } from "@/api/url.js";
 export default {
   name: "favoritesList",
   data() {
     return {
+      url,
       list: [],
       loading: false
     };
@@ -64,4 +76,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.tableImg {
+  max-width: 200px;
+}
+</style>

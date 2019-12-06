@@ -22,6 +22,8 @@ import favoritesModel from "./model/favorites";
 import articlesModel from "./model/articles";
 import categoriesModel from "./model/categories";
 import userModel from "./model/user";
+import customNavModel from "./model/customNav";
+import bannerModel from "./model/banner";
 export default {
   async uploadFile(formdata) {
     try {
@@ -49,5 +51,7 @@ export default {
   ...favoritesModel,
   ...articlesModel,
   ...categoriesModel,
-  ...userModel
+  ...userModel,
+  ...customNavModel,
+  ...bannerModel
 };

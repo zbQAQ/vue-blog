@@ -1,6 +1,6 @@
 <template>
-  <div class="userEdit">
-    <h2 class="pageTitle">用户{{ id ? "编辑" : "创建" }}</h2>
+  <div class="customNav">
+    <h2 class="pageTitle">自定义导航{{ id ? "编辑" : "创建" }}</h2>
 
     <el-form
       ref="form"
@@ -10,17 +10,20 @@
       v-loading="loading"
       style="max-width: 800px"
     >
-      <el-form-item label="账号">
-        <el-input v-model="model.account"></el-input>
+      <el-form-item label="名称">
+        <el-input v-model="model.name"></el-input>
       </el-form-item>
-      <el-form-item label="密码">
-        <el-input v-model="model.password"></el-input>
+      <el-form-item label="链接">
+        <el-input v-model="model.link"></el-input>
+      </el-form-item>
+      <el-form-item label="点击数">
+        <el-input-number v-model="model.clicks" :min="0"></el-input-number>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">
           立即{{ id ? "修改" : "创建" }}
         </el-button>
-        <el-button @click="$router.push('/admin/userList')">
+        <el-button @click="$router.push('/admin/customNavList')">
           返回
         </el-button>
       </el-form-item>
@@ -44,12 +47,12 @@ export default {
       this.loading = true;
       let res;
       if (this.id) {
-        res = await posts.updateUserOne(this.id, this.model);
+        res = await posts.updateCustomNavOne(this.id, this.model);
       } else {
-        res = await posts.createUser(this.model);
+        res = await posts.createCustomNav(this.model);
       }
       if (res) {
-        this.$router.push("/admin/userList");
+        this.$router.push("/admin/customNavList");
         this.$message({
           message: res.message,
           type: "success"
@@ -59,7 +62,7 @@ export default {
     },
     async fetchDetail() {
       this.loading = true;
-      this.model = await posts.fetchUserDetail(this.id);
+      this.model = await posts.fetchCustomNavDetail(this.id);
       this.loading = false;
     }
   },

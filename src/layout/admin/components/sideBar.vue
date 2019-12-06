@@ -3,7 +3,7 @@
     <el-menu
       router
       :default-active="$route.path"
-      :default-openeds="['1', '2', '3', '4']"
+      :default-openeds="['1', '2', '3', '4', '5', '6']"
     >
       <el-submenu index="1">
         <div slot="title">
@@ -35,6 +35,22 @@
         </div>
         <el-menu-item index="/admin/userList">列表</el-menu-item>
         <el-menu-item index="/admin/userCreate">创建</el-menu-item>
+      </el-submenu>
+
+      <el-submenu index="5">
+        <div slot="title">
+          <span>自定义导航</span>
+        </div>
+        <el-menu-item index="/admin/customNavList">列表</el-menu-item>
+        <el-menu-item index="/admin/customNavCreate">创建</el-menu-item>
+      </el-submenu>
+
+      <el-submenu index="6">
+        <div slot="title">
+          <span>banner管理</span>
+        </div>
+        <el-menu-item index="/admin/bannerList">列表</el-menu-item>
+        <el-menu-item index="/admin/bannerCreate">创建</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>

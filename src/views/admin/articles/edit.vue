@@ -13,6 +13,9 @@
       <el-form-item label="文章标题">
         <el-input v-model="model.title"></el-input>
       </el-form-item>
+      <el-form-item label="阅读量">
+        <el-input-number v-model="model.clicks" :min="0"></el-input-number>
+      </el-form-item>
       <el-form-item label="文章类别">
         <el-select v-model="model.category" placeholder="请选择">
           <el-option
@@ -49,7 +52,7 @@ import posts from "@/api";
 
 import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
-
+import { url } from "@/api/url.js";
 export default {
   name: "edit",
   props: ["id"],
@@ -59,7 +62,9 @@ export default {
   data() {
     return {
       loading: false,
-      model: {},
+      model: {
+        clicks: 0
+      },
       categories: []
     };
   },
@@ -82,23 +87,17 @@ export default {
       this.loading = false;
     },
     async fetchDetail() {
-      this.loading = true;
       this.model = await posts.fetchArticlesDetail(this.id);
-      this.loading = false;
     },
     async fetchCategories() {
-      this.loading = true;
-
       this.categories = await posts.fetchCategoriesList();
-
-      this.loading = false;
     },
     async handleImageAdded(pos, $file) {
       let formData = new FormData();
       formData.append("file", $file);
 
       const result = await posts.uploadFile(formData);
-      this.$refs.articleEditor.$img2Url(pos, result.url);
+      this.$refs.articleEditor.$img2Url(pos, url + result.url);
     },
     async handleImageDelete(file) {
       const fileName = file[0].split("/").pop();
