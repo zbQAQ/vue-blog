@@ -49,6 +49,10 @@ export default {
       const res = await posts.signIn(this.model);
       this.loading = false;
       if (res) {
+        this.$message({
+          type: "success",
+          message: "你已登录！"
+        });
         localStorage.set("token", res.token);
         this.$router.push("/admin");
       }

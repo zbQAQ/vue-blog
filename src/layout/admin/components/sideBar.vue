@@ -1,10 +1,6 @@
 <template>
   <div class="sideBar">
-    <el-menu
-      router
-      :default-active="$route.path"
-      :default-openeds="['1', '2', '3', '4', '5', '6']"
-    >
+    <el-menu router :default-active="$route.path">
       <el-submenu index="1">
         <div slot="title">
           <span>分类管理</span>

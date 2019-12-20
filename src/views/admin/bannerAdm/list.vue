@@ -57,7 +57,9 @@ export default {
         type: "warning"
       }).then(async () => {
         this.loading = true;
+
         const res = await posts.deleteBanner(row._id);
+        await posts.deleteFile(row.image.split("/").pop());
         if (res) {
           this.$message({
             message: res.message,

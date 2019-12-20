@@ -59,6 +59,7 @@ export default {
       }).then(async () => {
         this.loading = true;
         const res = await posts.deleteFavorites(row._id);
+        await posts.deleteFile(row.thumb.split("/").pop());
         if (res) {
           this.$message({
             message: res.message,

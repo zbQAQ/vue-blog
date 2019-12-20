@@ -28,7 +28,7 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
   response => {
-    console.log(response.config.url, response.data);
+    console.log(response.config.url, response.data); // for debug
     return response;
   },
   err => {

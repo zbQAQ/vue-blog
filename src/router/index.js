@@ -5,11 +5,18 @@ Vue.use(VueRouter);
 
 import adminLayout from "@/layout/admin";
 import login from "@/views/admin/login/login.vue";
+import startPage from "@/views/web/startPage/startPage.vue";
 
 const routes = [
   {
     path: "/login",
+    name: "login",
     component: login
+  },
+  {
+    path: "/start",
+    name: "startPage",
+    component: startPage
   },
   {
     path: "/admin",

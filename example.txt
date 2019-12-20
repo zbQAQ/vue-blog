@@ -1,0 +1,95 @@
+
+/**  vue Gen  **/
+
+<template>
+	<div class="temp">
+		{{msg}}
+	</div>
+</template>
+<script>
+export default {
+  name: 'myTemplate',
+  data () {
+    return {
+			msg: 'hello myTemplate!'
+		}
+  },
+	methods: {}
+}
+</script>
+<style scoped>
+.content {
+  transition: .2s ease-in;
+  width: 100%;
+}
+@media (min-width: 1600px) {
+  .content {
+    width: 90%;
+  } 
+}
+</style>
+
+
+/***************************/
+
+
+/**  components  **/
+
+<template>
+	<div class="myComponents">
+		{{msg}}
+	</div>
+</template>
+
+<script>
+export default {
+  name: 'myComponents',
+	props: [],
+  data () {
+    return {
+			msg: 'hello myComponents!'
+		}
+  },
+	methods: {}
+}
+</script>
+<style scoped>
+
+</style>
+
+
+/************************************/
+
+/** vuex **/
+
+
+
+
+/**
+ * temp vuex
+ */
+// import posts from '@/plugins/request'
+
+// initial state
+const state = {
+
+}
+// getters
+const getters = {
+
+}
+// actions
+const actions = {
+
+}
+
+// mutations
+const mutations = {
+
+}
+export default {
+  state,
+  getters,
+  actions,
+  mutations
+}
