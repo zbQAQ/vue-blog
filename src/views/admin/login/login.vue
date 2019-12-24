@@ -15,7 +15,9 @@
           <el-form-item label="密码">
             <el-input
               v-model="model.password"
+              show-password
               placeholder="请输入密码"
+              @keyup.enter.native="login"
             ></el-input>
           </el-form-item>
           <el-form-item>
@@ -37,8 +39,8 @@ export default {
   data() {
     return {
       model: {
-        account: "root",
-        password: "root"
+        account: "",
+        password: ""
       },
       loading: false
     };

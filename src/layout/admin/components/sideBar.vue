@@ -1,6 +1,6 @@
 <template>
   <div class="sideBar">
-    <el-menu router :default-active="$route.path">
+    <el-menu router :default-active="$route.path" unique-opened>
       <el-submenu index="1">
         <div slot="title">
           <span>分类管理</span>

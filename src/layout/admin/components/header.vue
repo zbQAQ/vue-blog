@@ -43,6 +43,7 @@ export default {
 .logo {
   font-weight: bold;
 }
+.headerNav,
 .loginOut {
   cursor: pointer;
 }

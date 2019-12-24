@@ -1,6 +1,7 @@
 <template>
   <div
     class="timer"
+    @click="changeInNavModel(!inNavModel)"
     @mouseenter="changStyle('enter')"
     @mouseleave="changStyle('leave')"
     :class="{ hover: timerHover, leave: !timerHover }"
@@ -10,6 +11,7 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from "vuex";
 import { dateFormat } from "@/plugins/common.js";
 export default {
   name: "timer",
@@ -21,11 +23,13 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["inNavModel"]),
     time() {
       return dateFormat(this.timestamp, "HH:mm");
     }
   },
   methods: {
+    ...mapMutations(["changeInSearchModel", "changeInNavModel"]),
     changStyle(type) {
       if (type === "enter") return (this.timerHover = true);
       if (type === "leave") return (this.timerHover = false);
@@ -53,6 +57,7 @@ export default {
   text-align: center;
   width: 100px;
   white-space: nowrap;
+  cursor: pointer;
   transition: all 0.25s;
 }
 .timer h1 {
