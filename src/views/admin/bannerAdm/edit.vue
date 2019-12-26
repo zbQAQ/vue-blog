@@ -23,8 +23,8 @@
           :on-change="uploadChange"
           :on-remove="uploadRemove"
         >
-          <!-- <img v-if="model.thumb" :src="model.thumb" class="avatar" /> -->
-          <i class="el-icon-plus"></i>
+          <img v-if="model.image" :src="url + model.image" class="avatar" />
+          <i v-else class="el-icon-plus"></i>
           <div class="el-upload__tip" slot="tip">小提示</div>
         </el-upload>
       </el-form-item>
@@ -50,7 +50,8 @@ export default {
     return {
       loading: false,
       files: {},
-      model: {}
+      model: {},
+      url
     };
   },
   computed: {
@@ -95,15 +96,18 @@ export default {
     uploadExceed() {
       this.$message("最多只能上传一个图片");
     },
-    uploadChange(file, fileList) {
+    async uploadChange(file, fileList) {
+      if (this.model.image) {
+        await posts.deleteFile(this.model.image.split("/").pop());
+      }
       if (fileList.length) {
         this.files = file;
-        this.model.thumb = file.url;
+        this.model.image = file.url;
       }
     },
     uploadRemove() {
       this.files = {};
-      this.model.thumb = "";
+      this.model.image = "";
     }
   },
   created() {
@@ -115,5 +119,10 @@ export default {
 <style scoped>
 .form {
   padding: 20px 0;
+}
+.avatar {
+  max-height: 148px;
+  border: 1px dashed #b3b3b3;
+  border-radius: 4px;
 }
 </style>

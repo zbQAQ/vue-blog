@@ -1,6 +1,6 @@
 /**
- * @param { Date } now
- * @param { String } fmt
+ * @param { Date } now 需要格式化的时间点
+ * @param { String } fmt 格式
  * @return { String }
  */
 export const dateFormat = (now, fmt) => {
@@ -30,3 +30,31 @@ export const dateFormat = (now, fmt) => {
   }
   return f;
 };
+
+/**
+ * @param { Function } fn 防抖要执行的函数
+ * @param { delay } delay 延时
+ * @return { * }
+ */
+export const debounce = (fn, delay) => {
+  var timer = null;
+  return function() {
+    var context = this;
+    var args = arguments;
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    timer = setTimeout(function() {
+      fn.apply(context, args);
+    }, delay);
+  };
+};
+
+// /**
+//  * @param { Object } target
+//  * @return { Object }
+//  */
+// export const deepClone = (target) => {
+
+// }

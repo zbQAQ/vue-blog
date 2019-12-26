@@ -4,19 +4,23 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import adminLayout from "@/layout/admin";
+import webLayout from "@/layout/web";
 import login from "@/views/admin/login/login.vue";
-import startPage from "@/views/web/startPage/startPage.vue";
 
 const routes = [
   {
-    path: "/login",
-    name: "login",
-    component: login
+    path: "/",
+    redirect: "/start"
   },
   {
     path: "/start",
     name: "startPage",
-    component: startPage
+    component: () => import("../views/web/startPage/startPage.vue")
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: login
   },
   {
     path: "/admin",
@@ -123,6 +127,18 @@ const routes = [
         path: "bannerCreate",
         name: "bannerCreate",
         component: () => import("../views/admin/bannerAdm/edit.vue")
+      }
+    ]
+  },
+  {
+    path: "/w",
+    redirect: "/w/home",
+    component: webLayout,
+    children: [
+      {
+        path: "home",
+        name: "home",
+        component: () => import("../views/web/home/home.vue")
       }
     ]
   }

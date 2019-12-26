@@ -1,6 +1,6 @@
 <template>
   <div class="favoritesEdit">
-    <h2 class="pageTitle">收藏夹{{ id ? "编辑" : "创建" }}</h2>
+    <h2 class="pageTitle">作品{{ id ? "编辑" : "创建" }}</h2>
 
     <el-form
       ref="form"
@@ -10,19 +10,11 @@
       v-loading="loading"
       style="max-width: 800px"
     >
-      <el-form-item label="收藏类别">
-        <el-select v-model="model.category" placeholder="请选择">
-          <el-option
-            v-for="item in categories"
-            :key="item._id"
-            :label="item.name"
-            :value="item._id"
-          >
-          </el-option>
-        </el-select>
-      </el-form-item>
       <el-form-item label="收藏名称">
         <el-input v-model="model.name"></el-input>
+      </el-form-item>
+      <el-form-item label="收藏描述">
+        <el-input v-model="model.desc"></el-input>
       </el-form-item>
       <el-form-item label="链接地址">
         <el-input v-model="model.link"></el-input>
@@ -37,8 +29,8 @@
           :on-change="uploadChange"
           :on-remove="uploadRemove"
         >
-          <!-- <img v-if="model.thumb" :src="model.thumb" class="avatar" /> -->
-          <i class="el-icon-plus"></i>
+          <img v-if="model.thumb" :src="url + model.thumb" class="avatar" />
+          <i v-else class="el-icon-plus"></i>
           <div class="el-upload__tip" slot="tip">小提示</div>
         </el-upload>
       </el-form-item>
@@ -66,8 +58,9 @@ export default {
       model: {
         thumb: ""
       },
-      categories: [],
-      files: {}
+      photoList: [],
+      files: {},
+      url
     };
   },
   computed: {
@@ -107,13 +100,13 @@ export default {
     async fetchDetail() {
       this.model = await posts.fetchFavoritesDetail(this.id);
     },
-    async fetchCategories() {
-      this.categories = await posts.fetchCategoriesList();
-    },
     uploadExceed() {
       this.$message("最多只能上传一个图片");
     },
-    uploadChange(file, fileList) {
+    async uploadChange(file, fileList) {
+      if (this.model.thumb) {
+        await posts.deleteFile(this.model.thumb.split("/").pop());
+      }
       if (fileList.length) {
         this.files = file;
         this.model.thumb = file.url;
@@ -127,7 +120,6 @@ export default {
   created() {
     this.loading = true;
     this.id && this.fetchDetail();
-    this.fetchCategories();
     this.loading = false;
   }
 };
@@ -145,7 +137,7 @@ export default {
   border-radius: 4px;
 }
 .avatar {
-  max-width: 400px;
+  max-height: 148px;
   border: 1px dashed #b3b3b3;
   border-radius: 4px;
 }

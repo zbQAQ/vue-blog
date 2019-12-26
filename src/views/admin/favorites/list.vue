@@ -1,10 +1,10 @@
 <template>
   <div class="favoritesList">
-    <h2 class="pageTitle">收藏夹列表</h2>
+    <h2 class="pageTitle">作品列表</h2>
     <el-table :data="list" border style="width: 100%" v-loading="loading">
       <el-table-column prop="_id" label="id" width="220"></el-table-column>
       <el-table-column prop="name" label="名称"></el-table-column>
-      <el-table-column prop="category.name" label="类别"></el-table-column>
+      <!-- <el-table-column prop="category.name" label="类别"></el-table-column> -->
       <el-table-column prop="thumb" width="220" label="缩略图">
         <template slot-scope="scope">
           <p v-if="scope.row.thumb">

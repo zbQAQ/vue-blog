@@ -25,6 +25,13 @@ export default {
   height: 100%;
   width: 100%;
 }
+.admin-layout,
+.admin-layout button,
+.admin-layout input,
+.admin-layout select,
+.admin-layout textarea {
+  font-family: microsoft yahei, microsoft yahei, Helvetica, sans-serif;
+}
 .sidebar-container {
   position: fixed;
   height: 100%;

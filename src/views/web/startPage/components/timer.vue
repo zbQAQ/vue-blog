@@ -73,7 +73,7 @@ export default {
   width: 100%;
   height: 2px;
   position: absolute;
-  bottom: -5px;
+  bottom: 10px;
   background-color: #70c000;
   transform: scale3d(0, 1, 1);
   transition: all 0.25s;
