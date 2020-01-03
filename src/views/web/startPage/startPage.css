@@ -1,0 +1,161 @@
+.startPage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #666;
+  overflow: hidden;
+}
+.bgBox,
+.cover {
+  z-index: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.bgBox {
+  /* background-image: url("https://api.rthe.cn/bing.jpg"); */
+  background-image: url("https://a.maorx.cn/images/BG_A_Default_2.jpg");
+  /* background-image: url("https://cdn.jsdelivr.net/gh/MobiusBeta/a.maorx.cn/images/BG_A_Default_3.jpg"); */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  transition: transform 0.25s, filter 0.5s;
+}
+.bgBox.inBlur {
+  transform: scale(1.1);
+  filter: blur(10px);
+}
+
+.cover {
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.25s;
+}
+.searchBox {
+  position: absolute;
+  top: 200px;
+  width: 100%;
+  height: 46px;
+  transition: opacity 0.25s;
+  z-index: 1;
+}
+.searchBox.hide {
+  z-index: -1;
+  opacity: 0;
+}
+
+.navBox {
+  position: relative;
+  top: 200px;
+  left: 50%;
+  width: 650px;
+  height: 200px;
+  margin-left: -315px;
+  overflow: hidden;
+  z-index: 1;
+  transition: opacity 0.25s;
+}
+.navBox.hide {
+  z-index: -1;
+  opacity: 0;
+}
+.navBox .navList {
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  transition: all 0.25s;
+}
+
+.navBox .navList .navItem {
+  float: left;
+  width: 12%;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  font-size: 13px;
+  background-color: transparent;
+  padding: 6px 0px;
+  margin: 4%;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: all 0.25s;
+  overflow: hidden;
+}
+.navBox .navList .navItem:hover {
+  color: rgb(112, 192, 0);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.navBox .addPanel {
+  box-sizing: border-box;
+  padding: 0 120px;
+  left: 100%;
+}
+.addPanel .formItem {
+  width: 100%;
+  margin: 15px 0;
+}
+.addPanel .formItem input {
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  outline: none;
+  color: #000;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+  transition: background-color 0.25s;
+}
+.addPanel .formItem input:focus {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.addPanel .toolbar {
+  text-align: center;
+  color: #a4a6b3;
+
+  transition: all 0.25s;
+  opacity: 0;
+  transform: translateX(20px);
+  z-index: -1;
+}
+.addPanel .toolbar.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.addPanel .toolbar .iconfont {
+  font-size: 20px;
+  margin: 0 4px;
+  cursor: pointer;
+}
+.addPanel .toolbar .iconfont:hover {
+  color: rgba(112, 192, 0, 0.9);
+}
+
+.navBox .addBtn {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  color: #fff;
+  font-size: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  text-align: center;
+  margin-left: -14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.navBox .addBtn i {
+  font-size: 14px;
+}
+.navBox .addBtn:hover {
+  color: rgb(112, 192, 0);
+  background-color: rgba(255, 255, 255, 0.3);
+}
