@@ -131,14 +131,24 @@ const routes = [
     ]
   },
   {
+    path: "/home",
+    name: "home",
+    component: () => import("../views/web/home/home.vue")
+  },
+  {
     path: "/w",
-    redirect: "/w/home",
+    redirect: "/w/artcle",
     component: webLayout,
     children: [
       {
-        path: "home",
-        name: "home",
-        component: () => import("../views/web/home/home.vue")
+        path: "bird",
+        name: "bird",
+        component: () => import("../views/web/flyBird/flyBird.vue")
+      },
+      {
+        path: "artcle",
+        name: "artcle",
+        component: () => import("../views/web/artcle/artcle.vue")
       }
     ]
   }

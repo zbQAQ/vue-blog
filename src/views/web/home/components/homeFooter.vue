@@ -22,11 +22,11 @@ export default {
 <style scoped>
 .myFooter {
   position: relative;
+  top: 100%;
   height: 70px;
   line-height: 70px;
   background: transparent;
   text-align: center;
-  background-color: #666;
 }
 .footerLink {
   color: #fff;

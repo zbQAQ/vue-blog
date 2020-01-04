@@ -50,11 +50,3 @@ export const debounce = (fn, delay) => {
     }, delay);
   };
 };
-
-// /**
-//  * @param { Object } target
-//  * @return { Object }
-//  */
-// export const deepClone = (target) => {
-
-// }

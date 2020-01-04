@@ -64,6 +64,7 @@ export default {
       this.changeInSearchModel(false);
     },
     doSearch() {
+      if (this.searchStr.length < 1) return;
       // eslint-disable-next-line prettier/prettier
       const url = this.searchEngines.find(v => v.engine === this.searchEngine).value;
       window.open(url + this.searchStr);

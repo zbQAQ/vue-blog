@@ -1,59 +1,39 @@
 <template>
-  <div class="myHeader" :class="{ scroll: scrollTop > 450 }">
+  <div class="myHeader" :class="{ scroll: scrollTop > 480 }">
     <div class="topLogo">
       <img src="/img/logo.jpg" alt="" />
     </div>
     <div class="navBox">
       <div
         class="navItem"
-        v-for="item in navList"
-        :key="item.label"
-        @click="router(item.to)"
+        :class="{ hover: scrollTop < 937 }"
+        @click="scrollMove(0)"
       >
-        {{ item.label }}
+        首页
       </div>
+      <div
+        class="navItem"
+        :class="{ hover: scrollTop >= 937 && scrollTop < 937 + 498 }"
+        @click="scrollMove(937)"
+      >
+        关于
+      </div>
+      <div
+        class="navItem"
+        :class="{ hover: scrollTop >= 937 + 498 }"
+        @click="scrollMove(937 + 498)"
+      >
+        作品
+      </div>
+      <!-- <div class="navItem" @click="scrollMove()">日志</div> -->
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["bannerH"],
   name: "myHeader",
-  data() {
-    return {
-      scrollTop: document.body.scrollTop + document.documentElement.scrollTop,
-      navList: [
-        {
-          label: "首页",
-          to: "/home"
-        },
-        {
-          label: "Github",
-          to: "https://github.com/zbQAQ"
-        },
-        {
-          label: "简历",
-          to: "/home"
-        }
-      ]
-    };
-  },
-  methods: {
-    router(to) {
-      if (/https|http|ttp/.test(to)) {
-        window.open(to);
-      } else {
-        this.$router.push(to);
-      }
-    }
-  },
-  mounted() {
-    window.addEventListener("scroll", () => {
-      // eslint-disable-next-line prettier/prettier
-      this.scrollTop = document.body.scrollTop + document.documentElement.scrollTop
-    });
-  }
+  props: ["scrollTop", "scrollMove"]
 };
 </script>
 
