@@ -62,14 +62,13 @@ export default {
       navList: [
         { label: "百度", url: "https://www.baidu.com/" },
         { label: "Google", url: "https://www.baidu.com/" },
+        { label: "图片", url: "https://image.baidu.com/" },
         { label: "BiliBili", url: "https://www.baidu.com/" },
-        { label: "百度", url: "https://www.baidu.com/" },
-        { label: "百度", url: "https://www.baidu.com/" },
-        { label: "百度", url: "https://www.baidu.com/" },
-        { label: "百度", url: "https://www.baidu.com/" },
-        { label: "百度", url: "https://www.baidu.com/" },
-        { label: "百度", url: "https://www.baidu.com/" },
-        { label: "百度", url: "https://www.baidu.com/" }
+        { label: "翻译", url: "https://translate.google.cn/" },
+
+        { label: "京东", url: "https://www.jd.com/" },
+        { label: "淘宝", url: "https://www.taobao.com/" },
+        { label: "Github", url: "https://github.com/" },
       ],
       addNavForm: {
         name: "",

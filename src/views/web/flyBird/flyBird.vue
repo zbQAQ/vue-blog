@@ -1,6 +1,6 @@
 <template>
   <div class="flyBirdMain" ref="main">
-    <!-- <h1>{{msg}}</h1> -->
+    <div class="bannerTit">飞翔的小鸟</div>
 
     <!-- <div class="block"  :style="{left: left + 'px'}"></div> -->
     <div
