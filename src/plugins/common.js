@@ -50,3 +50,28 @@ export const debounce = (fn, delay) => {
     }, delay);
   };
 };
+
+/**
+ * @param { Element } el 过度图片的元素
+ * @param { String } url 目标图片的地址
+ */
+export const loadBanner = (el, url) => {
+  // console.log(el, url);
+  const oldImage = window.getComputedStyle(el).backgroundImage.slice(5, -2);
+  el.style.opacity = 0;
+
+  let image = new Image();
+  image.onload = () => {
+    setTimeout(() => {
+      el.style.opacity = 1;
+      el.style.backgroundImage = "url(" + url + ")";
+    }, 1000);
+  };
+  image.onerror = function() {
+    setTimeout(() => {
+      el.style.opacity = 1;
+      el.style.backgroundImage = oldImage;
+    }, 1000);
+  };
+  image.src = url;
+};

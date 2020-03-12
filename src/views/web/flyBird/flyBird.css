@@ -13,13 +13,6 @@
 
 .flyBirdMain {
   width: 60%;
-  margin: 0 auto;
-  margin-top: -80px;
-  margin-bottom: 60px;
-  background: #fff;
-  border-radius: 20px;
-  padding: 50px;
-  box-shadow: 1px 1px 15px -2px #666;
 }
 .flyBirdMain .bannerTit {
   position: absolute;

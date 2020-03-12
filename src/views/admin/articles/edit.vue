@@ -1,5 +1,5 @@
 <template>
-  <div class="articlesEdit">
+  <div class="articlesEdit" v-loading="loading">
     <h2 class="pageTitle">文章{{ id ? "编辑" : "创建" }}</h2>
 
     <el-form
@@ -27,12 +27,22 @@
           </el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="描述">
+        <el-input
+          type="textarea"
+          :rows="2"
+          placeholder="请输入内容"
+          v-model="model.description"
+        >
+        </el-input>
+      </el-form-item>
       <el-form-item label="文章详情">
         <mavonEditor
-          v-model="model.description"
+          v-model="model.content"
           ref="articleEditor"
           @imgAdd="handleImageAdded"
           @imgDel="handleImageDelete"
+          @change="changeContent"
         />
       </el-form-item>
       <el-form-item>
@@ -103,6 +113,9 @@ export default {
       const fileName = file[0].split("/").pop();
       const res = await posts.deleteFile(fileName);
       this.$message.success(res.message);
+    },
+    changeContent(val, render) {
+      this.model.render = render;
     }
   },
   created() {

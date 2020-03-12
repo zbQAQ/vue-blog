@@ -28,40 +28,18 @@
     <div class="work">
       <div class="title">突发奇想</div>
       <div class="workContent">
-        <div class="workLink">
+        <div
+          class="workLink"
+          v-for="(item, key) in workList"
+          :key="key"
+          @click="$router.push(item.router)"
+        >
           <div class="workPic">
-            <img src="/img/workPic.jpg" alt="" />
+            <img :src="item.imgUrl" alt="" />
           </div>
           <div class="workDesc">
-            <p class="descTit1">开始</p>
-            <p class="descTit2">简介美观的浏览器起始页</p>
-          </div>
-        </div>
-        <div class="workLink">
-          <div class="workPic">
-            <img src="/img/workPic.jpg" alt="" />
-          </div>
-          <div class="workDesc">
-            <p class="descTit1">开始</p>
-            <p class="descTit2">简介美观的浏览器起始页</p>
-          </div>
-        </div>
-        <div class="workLink">
-          <div class="workPic">
-            <img src="/img/workPic.jpg" alt="" />
-          </div>
-          <div class="workDesc">
-            <p class="descTit1">开始</p>
-            <p class="descTit2">简介美观的浏览器起始页</p>
-          </div>
-        </div>
-        <div class="workLink">
-          <div class="workPic">
-            <img src="/img/workPic.jpg" alt="" />
-          </div>
-          <div class="workDesc">
-            <p class="descTit1">开始</p>
-            <p class="descTit2">简介美观的浏览器起始页</p>
+            <p class="descTit1">{{ item.name }}</p>
+            <p class="descTit2">{{ item.desc }}</p>
           </div>
         </div>
       </div>
@@ -82,7 +60,22 @@ export default {
   data() {
     return {
       scrollTop: document.body.scrollTop + document.documentElement.scrollTop,
-      scrollTimer: null
+      scrollTimer: null,
+
+      workList: [
+        {
+          name: "博客",
+          desc: "写下自己学习和成长的过程",
+          imgUrl: "/img/artcle.jpg",
+          router: "/w/artcle"
+        },
+        {
+          name: "开始",
+          desc: "简介美观的浏览器起始页",
+          imgUrl: "/img/start.jpg",
+          router: "/start"
+        }
+      ]
     };
   },
   methods: {

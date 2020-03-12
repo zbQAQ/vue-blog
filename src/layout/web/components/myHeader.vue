@@ -1,5 +1,5 @@
 <template>
-  <div class="myHeader" :class="{ scroll: scrollTop > 450 }">
+  <div class="myHeader" :class="{ scroll: scrollTop > 300 }">
     <div class="topLogo">
       <img src="/img/logo.jpg" alt="" />
     </div>
@@ -59,7 +59,7 @@ export default {
 
 <style scoped>
 .myHeader {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   box-sizing: border-box;
@@ -76,7 +76,6 @@ export default {
   z-index: 2;
 }
 .myHeader.scroll {
-  position: fixed;
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
   color: #666;

@@ -1,5 +1,5 @@
 <template>
-  <div class="flyBirdMain" ref="main">
+  <div class="flyBirdMain wMainContent" ref="main">
     <div class="bannerTit">飞翔的小鸟</div>
 
     <!-- <div class="block"  :style="{left: left + 'px'}"></div> -->
@@ -222,6 +222,6 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import "./flyBird.css";
 </style>

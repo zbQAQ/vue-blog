@@ -16,11 +16,14 @@
   height: 100%;
 }
 .bgBox {
-  background-image: url("https://a.maorx.cn/images/BG_A_Default_1.jpg");
+  /* background-image: url("https://a.maorx.cn/images/BG_A_Default_1.jpg"); */
+  /* background-image: url("https://a.maorx.cn/images/BG_A_Default_3.jpg"); */
+  /* background-image: url("http://img.netbian.com/file/2019/0306/dec593c324c28ac9a2a7e90384daea72.jpg"); */
+  background-image: url("http://www.4kbizhi.com/d/file/2020/01/12/00383295ltt.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  transition: transform 0.25s, filter 0.5s;
+  transition: transform 0.25s, filter 0.5s, opacity 0.75s;
 }
 .bgBox.inBlur {
   transform: scale(1.1);
@@ -156,4 +159,38 @@
 .navBox .addBtn:hover {
   color: rgb(112, 192, 0);
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+.options {
+  position: absolute;
+  top: 35px;
+  right: 55px;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease 0s;
+}
+.options.isShow {
+  pointer-events: auto;
+  opacity: 1;
+}
+.options span {
+  padding: 6px 12px;
+  line-height: 30px;
+}
+.options span i {
+  font-size: 20px;
+}
+
+
+/* 画廊 */
+.gallery {
+  display: flex;
+  align-items: center;
+}
+.gallery .selectImg {
+  width: 200px;
+  height: 120px;
+  border-radius: 8px;
 }
