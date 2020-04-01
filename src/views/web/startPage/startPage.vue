@@ -174,8 +174,16 @@ export default {
       this.addNavForm.name = "";
       this.addNavForm.url = "";
     },
-    submitAddNavForm() {
-      console.log("submit!");
+    async submitAddNavForm() {
+      if (!this.addNavForm.name || !this.addNavForm.url) {
+        console.log("选项不能为空");
+        return;
+      }
+      const res = await posts.createCustomNav(this.addNavForm);
+      if (res.status === "ok") {
+        this.navList = await posts.fetchCustomNavList();
+        this.changeInAddNavPanel(false);
+      }
     },
     changeBg(img) {
       if (!img) {

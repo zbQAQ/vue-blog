@@ -156,6 +156,11 @@ const routes = [
         component: () => import("../views/web/artcle/artcleDetail.vue")
       }
     ]
+  },
+  {
+    path: "/test",
+    name: "test",
+    component: () => import("../views/web/test/rippleBtn.vue")
   }
 ];
 
