@@ -8,7 +8,7 @@
       <el-table-column prop="thumb" width="220" label="缩略图">
         <template slot-scope="scope">
           <p v-if="scope.row.thumb">
-            <img class="tableImg" :src="url + scope.row.thumb" alt="" />
+            <img class="tableImg" :src="scope.row.thumb" alt="" />
           </p>
           <p v-else>
             暂无

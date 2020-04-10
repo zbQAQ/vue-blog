@@ -5,7 +5,7 @@ export default {
   async fetchCustomNavList() {
     try {
       const res = await request({
-        url: url + "rest/customNav/",
+        url: url + "customNav/",
         method: "get"
       });
       if (res.status === 200 && res.statusText === "OK") {
@@ -49,7 +49,7 @@ export default {
   async createCustomNav(data) {
     try {
       const res = await request({
-        url: url + "rest/customNav/",
+        url: url + "customNav/",
         method: "post",
         data
       });

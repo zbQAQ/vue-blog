@@ -4,7 +4,7 @@
     <el-table :data="list" border style="max-width:1200px;" v-loading="loading">
       <el-table-column prop="_id" label="id" width="220"></el-table-column>
       <el-table-column prop="title" label="标题"></el-table-column>
-      <el-table-column prop="category.name" label="类别"> </el-table-column>
+      <el-table-column prop="category" label="类别"> </el-table-column>
       <el-table-column prop="clicks" label="阅读数"> </el-table-column>
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">

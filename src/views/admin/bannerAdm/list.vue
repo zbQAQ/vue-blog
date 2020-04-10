@@ -7,7 +7,7 @@
       <el-table-column prop="image" label="图片">
         <template slot-scope="scope">
           <p v-if="scope.row.image">
-            <img class="tableImg" :src="url + scope.row.image" alt="" />
+            <img class="tableImg" :src="scope.row.image" alt="" />
           </p>
           <p v-else>
             暂无
@@ -57,9 +57,9 @@ export default {
         type: "warning"
       }).then(async () => {
         this.loading = true;
-
+        let imageName = row.image.split("/").pop();
         const res = await posts.deleteBanner(row._id);
-        await posts.deleteFile(row.image.split("/").pop());
+        await posts.deleteFile(imageName);
         if (res) {
           this.$message({
             message: res.message,

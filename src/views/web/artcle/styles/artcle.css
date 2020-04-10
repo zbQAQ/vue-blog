@@ -1,8 +1,10 @@
 
 @import "http://github.com/yrgoldteeth/darkdowncss/raw/master/darkdown.css";
+.artcleCnt {
+  min-height: 380px;
+}
 .artcleCnt,
 .artcleDetailCnt {
-  height: 1200px;
   background: #fff;
 }
 @media (min-width: 1200px) {

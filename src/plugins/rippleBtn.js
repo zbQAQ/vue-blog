@@ -1,7 +1,6 @@
 document.onreadystatechange = () => {
   if (document.readyState === "complete") {
     const cssText = `
-
       .rippleWrapper,
       .rippleCircle {
         position: absolute;
@@ -59,12 +58,12 @@ document.onreadystatechange = () => {
         let target = e.target;
         let circlePosition = {
           x: e.pageX - this.offsetLeft - this.clientWidth / 2,
-          y: e.pageY - this.offsetTop - this.offsetWidth / 2
+          y: e.pageY - this.offsetTop - this.clientWidth / 2
         };
         let oDiv = document.createElement("div");
         oDiv.className = "rippleCircle";
-        oDiv.style.width = this.offsetWidth + "px";
-        oDiv.style.height = this.offsetWidth + "px";
+        oDiv.style.width = this.clientWidth + "px";
+        oDiv.style.height = this.clientWidth + "px";
         oDiv.style.top = circlePosition.y + "px";
         oDiv.style.left = circlePosition.x + "px";
 

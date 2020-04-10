@@ -10,12 +10,6 @@
     </div>
     <div class="about">
       <div class="title">关于我</div>
-      <!-- <div class="tagBox">
-        <div class="tag">95后</div>
-        <div class="tag"></div>
-        <div class="tag"></div>
-        <div class="tag"></div>
-      </div> -->
       <div class="aboutContent">
         <p>我是周锐斌，从爱运动到爱游戏最后选择编程行业。</p>
         <p>毕业于深圳技师学院，现出来寻找工作机会更快的提升自己。</p>
@@ -52,6 +46,7 @@
 import myHeader from "./components/homeHeader.vue";
 import myFooter from "./components/homeFooter.vue";
 import { debounce } from "@/plugins/common.js";
+import posts from "@/api";
 export default {
   components: {
     myHeader,
@@ -98,6 +93,9 @@ export default {
         }
       }, 1000 / 60);
     }
+  },
+  created() {
+    posts.fetchCategoriesList();
   },
   mounted() {
     this.__updateScrollTop = debounce(() => {

@@ -5,7 +5,7 @@ export default {
   async fetchBannerList() {
     try {
       const res = await request({
-        url: url + "rest/banner",
+        url: url + "banner",
         method: "get"
       });
       if (res.status === 200 && res.statusText === "OK") {
@@ -69,6 +69,20 @@ export default {
       });
       if (res.status === 200 && res.statusText === "OK") {
         return res.data;
+      }
+      return null;
+    } catch {
+      return null;
+    }
+  },
+  async bannerRecommend() {
+    try {
+      const res = await request({
+        url: url + "banner/recommend",
+        method: "get"
+      });
+      if (res.status === 200 && res.statusText === "OK") {
+        return res.data.data;
       }
       return null;
     } catch {

@@ -17,15 +17,7 @@
         <el-input-number v-model="model.clicks" :min="0"></el-input-number>
       </el-form-item>
       <el-form-item label="文章类别">
-        <el-select v-model="model.category" placeholder="请选择">
-          <el-option
-            v-for="item in categories"
-            :key="item._id"
-            :label="item.name"
-            :value="item._id"
-          >
-          </el-option>
-        </el-select>
+        <el-input v-model="model.category"></el-input>
       </el-form-item>
       <el-form-item label="描述">
         <el-input
@@ -62,7 +54,6 @@ import posts from "@/api";
 
 import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
-import { url } from "@/api/url.js";
 export default {
   name: "edit",
   props: ["id"],
@@ -107,7 +98,7 @@ export default {
       formData.append("file", $file);
 
       const result = await posts.uploadFile(formData);
-      this.$refs.articleEditor.$img2Url(pos, url + result.url);
+      this.$refs.articleEditor.$img2Url(pos, result.url);
     },
     async handleImageDelete(file) {
       const fileName = file[0].split("/").pop();
@@ -121,7 +112,6 @@ export default {
   created() {
     this.loading = true;
     this.id && this.fetchDetail();
-    this.fetchCategories();
     this.loading = false;
   }
 };

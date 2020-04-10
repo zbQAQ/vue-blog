@@ -29,7 +29,7 @@
           :on-change="uploadChange"
           :on-remove="uploadRemove"
         >
-          <img v-if="model.thumb" :src="url + model.thumb" class="avatar" />
+          <img v-if="model.thumb" :src="model.thumb" class="avatar" />
           <i v-else class="el-icon-plus"></i>
           <div class="el-upload__tip" slot="tip">小提示</div>
         </el-upload>

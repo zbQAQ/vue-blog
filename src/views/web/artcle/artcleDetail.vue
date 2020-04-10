@@ -3,18 +3,15 @@
     <div class="bannerTit">
       {{ model.title }}
       <p class="subTit m-t-25">
-        <i class="iconfont iconrili"></i> {{ model.createTime.split("T")[0] }}
-        {{
-          model.createTime.split("T")[1] &&
-            model.createTime.split("T")[1].split(".")[0]
-        }}
+        <i class="iconfont iconrili"></i>
+        {{ formatUTC(model.createTime) }}
       </p>
       <p class="subTit m-t-12">
         <i class="iconfont iconyuedushu m-l-12"></i> 阅读数 {{ model.clicks }}
       </p>
     </div>
     <!-- <div class="container"  v-html="model.render"></div> -->
-    <artContent class="container" :content="marked(model.content || '')" />
+    <artContent class="container" :content="model.render" />
   </div>
 </template>
 
@@ -22,6 +19,7 @@
 import posts from "@/api";
 import marked from "marked";
 import artContent from "./components/artcleContent";
+import { formatUTC } from "@/plugins/common";
 export default {
   components: { artContent },
   data() {
@@ -30,7 +28,7 @@ export default {
       model: {
         createTime: ""
       },
-
+      formatUTC,
       marked
     };
   },
@@ -48,5 +46,5 @@ export default {
 </script>
 
 <style scoped>
-@import "./artcle.css";
+@import "./styles/artcle.css";
 </style>

@@ -3,9 +3,9 @@
     <div class="topLogo">
       <img src="/img/logo.jpg" alt="" />
     </div>
-    <div class="navBox">
+    <div class="menu">
       <div
-        class="navItem"
+        class="menuItem"
         v-for="item in navList"
         :key="item.label"
         @click="router(item.to)"
@@ -100,16 +100,16 @@ export default {
 .topLogo:hover img {
   transform: rotate(360deg);
 }
-.navBox {
+.menu {
 }
-.navBox .navItem {
+.menu .menuItem {
   position: relative;
   display: inline-block;
   margin: 0 22px;
   font-size: 15px;
   cursor: pointer;
 }
-.navBox .navItem::after {
+.menu .menuItem::after {
   content: "";
   position: absolute;
   bottom: -8px;
@@ -121,8 +121,8 @@ export default {
   transition: transform 0.25s ease;
   transform: scale(0);
 }
-.navBox .navItem.hover::after,
-.navBox .navItem:hover::after {
+.menu .menuItem.hover::after,
+.menu .menuItem:hover::after {
   transform: scale(1);
 }
 </style>

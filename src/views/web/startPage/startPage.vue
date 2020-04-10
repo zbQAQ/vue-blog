@@ -34,11 +34,11 @@
         </div>
         <div class="formItem">
           <!-- eslint-disable-next-line prettier/prettier -->
-          <input type="text" placeholder="url" v-model="addNavForm.url" @keyup.enter="submitAddNavForm" />
+          <input type="text" placeholder="link" v-model="addNavForm.link" @keyup.enter="submitAddNavForm" />
         </div>
         <div
           class="toolbar"
-          :class="{ show: addNavForm.name.length && addNavForm.url.length }"
+          :class="{ show: addNavForm.name.length && addNavForm.link.length }"
         >
           <i class="iconfont iconqingkong" @click="clearAddNavForm"></i>
           <i class="iconfont iconsolidnail" @click="submitAddNavForm"></i>
@@ -48,6 +48,9 @@
         <i v-show="!inAddNavPanel" class="iconfont iconadd1"></i>
         <i v-show="inAddNavPanel" class="iconfont iconback-copy"></i>
       </div>
+    </div>
+    <div class="footer align-center">
+      <p class="pointer" @click="$router.push('/home')">zhoubao" HomePage</p>
     </div>
 
     <popup
@@ -105,30 +108,10 @@ export default {
       navList: [],
       addNavForm: {
         name: "",
-        url: ""
+        link: ""
       },
       bgSelectVisible: false,
-      bgSelectList: [
-        {
-          type: "风景",
-          list: [
-            "http://img.netbian.com/file/2019/0306/dec593c324c28ac9a2a7e90384daea72.jpg",
-            "http://pic1.win4000.com/wallpaper/b/54f3f3fb543fa.jpg"
-          ]
-        },
-        {
-          type: "by wlop",
-          list: [
-            "http://pic1.win4000.com/wallpaper/2017-11-20/5a129876ef82b.jpg",
-            "http://imgsrc.baidu.com/forum/pic/item/b141ad4bd11373f0edf8494ba90f4bfbfaed0424.jpg",
-            "http://img.netbian.com/file/2018/0604/a0c2eada07e46a6e7082afd2306db81c.jpg"
-          ]
-        },
-        {
-          type: "游戏",
-          list: ["http://www.4kbizhi.com/d/file/2020/01/12/00383295ltt.jpg"]
-        }
-      ]
+      bgSelectList: []
     };
   },
   methods: {
@@ -172,16 +155,17 @@ export default {
     },
     clearAddNavForm() {
       this.addNavForm.name = "";
-      this.addNavForm.url = "";
+      this.addNavForm.link = "";
     },
     async submitAddNavForm() {
-      if (!this.addNavForm.name || !this.addNavForm.url) {
+      if (!this.addNavForm.name || !this.addNavForm.link) {
         console.log("选项不能为空");
         return;
       }
       const res = await posts.createCustomNav(this.addNavForm);
       if (res.status === "ok") {
         this.navList = await posts.fetchCustomNavList();
+        this.clearAddNavForm();
         this.changeInAddNavPanel(false);
       }
     },
@@ -197,6 +181,23 @@ export default {
   },
   async created() {
     this.navList = await posts.fetchCustomNavList();
+    const bannerResult = await posts.fetchBannerList();
+    for (let i = 0; i < bannerResult.length; i++) {
+      // eslint-disable-next-line prettier/prettier
+      const sameItem = this.bgSelectList.find(v => v.type === bannerResult[i].name)
+      if (sameItem) {
+        sameItem.list.push(bannerResult[i].image);
+      } else {
+        this.bgSelectList.push({
+          type: bannerResult[i].name,
+          list: [bannerResult[i].image]
+        });
+      }
+    }
+    const recommend = await posts.bannerRecommend();
+    // this.$nextTick(() => {
+    loadBanner(this.$refs["bgBox"], recommend.image);
+    // });
   }
 };
 </script>

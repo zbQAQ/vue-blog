@@ -3,25 +3,25 @@
     <div class="topLogo">
       <img src="/img/logo.jpg" alt="" />
     </div>
-    <div class="navBox">
+    <div class="menu">
       <div
-        class="navItem"
-        :class="{ hover: scrollTop < 937 }"
+        class="menuItem"
+        :class="{ hover: scrollTop < 482 }"
         @click="scrollMove(0)"
       >
         首页
       </div>
       <div
-        class="navItem"
-        :class="{ hover: scrollTop >= 937 && scrollTop < 937 + 498 }"
-        @click="scrollMove(937)"
+        class="menuItem"
+        :class="{ hover: scrollTop >= 482 && scrollTop < 1044 }"
+        @click="scrollMove(482)"
       >
         关于
       </div>
       <div
-        class="navItem"
-        :class="{ hover: scrollTop >= 937 + 498 }"
-        @click="scrollMove(937 + 498)"
+        class="menuItem"
+        :class="{ hover: scrollTop >= 1044 }"
+        @click="scrollMove(1044)"
       >
         作品
       </div>
@@ -81,16 +81,16 @@ export default {
 .topLogo:hover img {
   transform: rotate(360deg);
 }
-.navBox {
+.menu {
 }
-.navBox .navItem {
+.menu .menuItem {
   position: relative;
   display: inline-block;
   margin: 0 22px;
   font-size: 15px;
   cursor: pointer;
 }
-.navBox .navItem::after {
+.menu .menuItem::after {
   content: "";
   position: absolute;
   bottom: -8px;
@@ -102,8 +102,8 @@ export default {
   transition: transform 0.25s ease;
   transform: scale(0);
 }
-.navBox .navItem.hover::after,
-.navBox .navItem:hover::after {
+.menu .menuItem.hover::after,
+.menu .menuItem:hover::after {
   transform: scale(1);
 }
 </style>

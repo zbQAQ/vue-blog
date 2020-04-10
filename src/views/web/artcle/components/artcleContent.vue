@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style scoped>
-@import "../../../../styles/markdown.css";
+@import "../styles/markdown.css";
 .artcleContent {
   font-family: "PingFang SC", "Lantinghei SC", "Microsoft Yahei",
     "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans;
@@ -41,5 +41,26 @@ export default {
 .artcleContent >>> h2 {
   border-bottom: 1px solid #eaecef;
   padding-bottom: 0.3em;
+}
+
+.artcleContent >>> .hljs {
+  background-color: transparent;
+}
+.artcleContent >>> blockquote {
+  margin-left: 0;
+}
+.artcleContent >>> .hljs-center {
+  text-align: center;
+}
+.artcleContent >>> pre,
+.artcleContent >>> img {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.artcleContent >>> ul,
+.artcleContent >>> ol {
+  padding-left: 2em;
+  list-style: upper-roman;
 }
 </style>
