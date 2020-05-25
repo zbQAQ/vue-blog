@@ -46,7 +46,7 @@
 import myHeader from "./components/homeHeader.vue";
 import myFooter from "./components/homeFooter.vue";
 import { debounce } from "@/plugins/common.js";
-import posts from "@/api";
+// import posts from "@/api";
 export default {
   components: {
     myHeader,
@@ -69,6 +69,18 @@ export default {
           desc: "简介美观的浏览器起始页",
           imgUrl: "/img/start.jpg",
           router: "/start"
+        },
+        {
+          name: "飞翔的小鸟",
+          desc: "自己模拟飞翔的小鸟小游戏",
+          imgUrl: "/img/flappyBird.jpg",
+          router: "/w/bird"
+        },
+        {
+          name: "扫雷",
+          desc: "一个可以开挂的扫雷游戏",
+          imgUrl: "/img/minesweeper.jpg",
+          router: "/w/mineSweeper"
         }
       ]
     };
@@ -95,7 +107,7 @@ export default {
     }
   },
   created() {
-    posts.fetchCategoriesList();
+    // posts.fetchCategoriesList();
   },
   mounted() {
     this.__updateScrollTop = debounce(() => {

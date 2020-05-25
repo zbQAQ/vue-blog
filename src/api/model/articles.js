@@ -20,7 +20,7 @@ export default {
   async fetchArticlesDetail(id) {
     try {
       const res = await request({
-        url: url + "rest/articles/" + id,
+        url: url + "articles/" + id,
         method: "get"
       });
       if (res.status === 200 && res.statusText === "OK") {

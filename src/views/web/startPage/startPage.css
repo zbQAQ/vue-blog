@@ -16,10 +16,6 @@
   height: 100%;
 }
 .bgBox {
-  /* background-image: url("https://a.maorx.cn/images/BG_A_Default_1.jpg"); */
-  /* background-image: url("https://a.maorx.cn/images/BG_A_Default_3.jpg"); */
-  /* background-image: url("http://img.netbian.com/file/2019/0306/dec593c324c28ac9a2a7e90384daea72.jpg"); */
-  /* background-image: url("http://www.4kbizhi.com/d/file/2020/01/12/00383295ltt.jpg"); */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -116,6 +112,19 @@
 .addPanel .formItem input:focus {
   background-color: rgba(255, 255, 255, 0.9);
 }
+.addPanel .formItem input::-webkit-input-placeholder{  /* WebKit browsers */
+  color: #fff;
+}
+.addPanel .formItem input:-moz-placeholder{  /* Mozilla Firefox 4 to 18 */
+  color: #fff;
+}
+.addPanel .formItem input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+  color: #fff;
+}
+.addPanel .formItem input:-ms-input-placeholder {  /* Internet Explorer 10+ */
+  color: #fff;
+}
+
 .addPanel .toolbar {
   text-align: center;
   color: #a4a6b3;

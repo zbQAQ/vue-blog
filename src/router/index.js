@@ -146,6 +146,11 @@ const routes = [
         component: () => import("../views/web/flyBird/flyBird.vue")
       },
       {
+        path: "mineSweeper",
+        name: "mineSweeper",
+        component: () => import("../views/web/mineSweeper/mineSweeper.vue")
+      },
+      {
         path: "artcle",
         name: "artcle",
         component: () => import("../views/web/artcle/artcle.vue")
@@ -158,8 +163,8 @@ const routes = [
     ]
   },
   {
-    path: "/test",
-    name: "test",
+    path: "/ripple",
+    name: "ripple",
     component: () => import("../views/web/test/rippleBtn.vue")
   }
 ];

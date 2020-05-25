@@ -73,7 +73,7 @@ export default {
   background-color: transparent;
   color: #fff;
   transition: all 0.25s;
-  z-index: 2;
+  z-index: 99;
 }
 .myHeader.scroll {
   background-color: #fff;
