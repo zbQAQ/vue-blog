@@ -80,7 +80,7 @@ export const debounce = (fn, delay) => {
  * @param { String } url 目标图片的地址
  */
 export const loadBanner = (el, url) => {
-  // console.log(el, url);
+  console.log(el, url);
   const oldImage = window.getComputedStyle(el).backgroundImage.slice(5, -2);
   el.style.opacity = 0;
 

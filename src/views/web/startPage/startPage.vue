@@ -181,23 +181,27 @@ export default {
   },
   async created() {
     this.navList = await posts.fetchCustomNavList();
-    const bannerResult = await posts.fetchBannerList();
-    for (let i = 0; i < bannerResult.length; i++) {
-      // eslint-disable-next-line prettier/prettier
-      const sameItem = this.bgSelectList.find(v => v.type === bannerResult[i].name)
-      if (sameItem) {
-        sameItem.list.push(bannerResult[i].image);
-      } else {
-        this.bgSelectList.push({
-          type: bannerResult[i].name,
-          list: [bannerResult[i].image]
-        });
+    try {
+      const bannerResult = await posts.fetchBannerList();
+      for (let i = 0; i < bannerResult.length; i++) {
+        // eslint-disable-next-line prettier/prettier
+        const sameItem = this.bgSelectList.find(v => v.type === bannerResult[i].name)
+        if (sameItem) {
+          sameItem.list.push(bannerResult[i].image);
+        } else {
+          this.bgSelectList.push({
+            type: bannerResult[i].name,
+            list: [bannerResult[i].image]
+          });
+        }
       }
+      const recommend = await posts.bannerRecommend();
+      // this.$nextTick(() => {
+      loadBanner(this.$refs["bgBox"], recommend.image);
+      // });
+    } catch {
+      loadBanner(this.$refs["bgBox"], "./img/defaultBanner.jpg");
     }
-    const recommend = await posts.bannerRecommend();
-    // this.$nextTick(() => {
-    loadBanner(this.$refs["bgBox"], recommend.image);
-    // });
   }
 };
 </script>
